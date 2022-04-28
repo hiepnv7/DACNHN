@@ -1,6 +1,7 @@
 <!-- Bootstrap core JavaScript-->
 <script src="${base}/vendor/jquery/jquery.min.js"></script>
 <script src="${base}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${base}/vendor/jquery/jquery-3.2.1.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="${base}/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -19,4 +20,4 @@
 	function confirmDeleteItem(){
 		return confirm("Want to delete?")
 	}
-</script>	
+</script>

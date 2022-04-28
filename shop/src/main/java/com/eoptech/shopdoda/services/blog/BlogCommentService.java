@@ -45,7 +45,8 @@ public class BlogCommentService {
 		jpql = jpql + " ORDER BY p.createdDate DESC";
 
 		if(commentSearch.getIdProductOrBlog() > 0) {
-			jpql = "Select c From BlogComment c Where c.blog.id='" + commentSearch.getIdProductOrBlog() + "' And c.status = true";
+			jpql = "Select c From BlogComment c Where c.blog.id='" + commentSearch.getIdProductOrBlog()+ "' And c.isDeleted = false ";
+			/*+ "' And c.status = true"*/
 		}
 		Query query = entityManager.createQuery(jpql, BlogComment.class);
 

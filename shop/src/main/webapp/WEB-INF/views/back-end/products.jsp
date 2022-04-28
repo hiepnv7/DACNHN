@@ -71,7 +71,7 @@
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
-									<thead>
+									<thead style="position: sticky">
 										<tr>
 											<th>#</th>
 											<th>Tiêu đề</th>
@@ -83,7 +83,7 @@
 										</tr>
 									</thead>
 									<tfoot>
-										<tr>
+										<tr style="position: sticky;">
 											<th>#</th>
 											<th>Tiêu đề</th>
 											<th>Avatar</th>

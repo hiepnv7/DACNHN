@@ -26,6 +26,9 @@ public class BlogComment extends BaseEntity {
 	@Column(name = "parent_comment_id")
 	private int parentCommentId;
 
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
+
 	public Blog getBlog() {
 		return blog;
 	}
@@ -48,6 +51,14 @@ public class BlogComment extends BaseEntity {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public int getParentCommentId() {

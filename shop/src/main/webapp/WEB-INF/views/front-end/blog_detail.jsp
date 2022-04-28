@@ -9,8 +9,10 @@
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%
 Integer userId = 0;
+String username = null;
 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 if (principal instanceof UserDetails) {
+	username = ((User)principal).getUsername();
 	userId = ((User)principal).getId();
 }
 %>
@@ -89,29 +91,45 @@ if (principal instanceof UserDetails) {
 						<!--  -->
 						<div class="p-t-40">
 							<h5 class="cl2 p-b-12">Bình luận</h5>
+							<div class="p-t-40">
+								<c:forEach items="${comments}" var="comment">
+									<img class="img-profile rounded-circle" style="margin-left: 3px;padding-left:2px;height:2rem;width:2rem"
+										 src="${base}/upload/${comment.user.avatar}">
+									<h8 class="cl2 font-weight-bold">  ${comment.user.fullName } <a>:</a></h8>
+									<div style="display: flex; margin-left: 30px;margin-top: 5px;justify-content: space-between">
+										<p class="cl6">${comment.comment }</p>
+										<i><fmt:formatDate value="${comment.createdDate}" pattern="HH:mm dd-MM-yyyy" /></i>
+									</div>
+									<br> <br>
+								</c:forEach>
+							</div>
 
 							<p class="cl6 p-b-40">Note: Đăng nhập trước khi bình luận *</p>
 
+							<%
+								if(username!=null){
+							%>
 							<!-- <form> -->
-								<div class="bor19 m-b-20">
+							<div class="bor19 m-b-20">
 									<textarea class="cl2 plh3 size-124 p-lr-18 p-tb-15" id="comment"
-										name="comment" placeholder="Bình luận..."></textarea>
-								</div>
-								
-								<button onclick="saveComment(<%=userId %>,${blog.id})"
+											  name="comment" placeholder="Bình luận..."></textarea>
+							</div>
+
+							<button onclick="saveComment(<%=userId %>,${blog.id})"
 									class="flex-c-m cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
-									Bình luận</button>
+								Bình luận</button>
 							<!-- </form> -->
+							<% } %>
 							
 						</div>
-						<div class="p-t-40">
+						<%--<div class="p-t-40">
 						<c:forEach items="${comments}" var="comment">
 							<h5 class="cl2 font-weight-bold">${comment.user.fullName }</h5>
 							<p class="cl6">${comment.comment }</p>
 							<i><fmt:formatDate value="${comment.createdDate}" pattern="HH:mm dd-MM-yyyy" /></i>
 							<br> <br>
 						</c:forEach>
-						</div>
+						</div>--%>
 					</div>
 				</div>
 
