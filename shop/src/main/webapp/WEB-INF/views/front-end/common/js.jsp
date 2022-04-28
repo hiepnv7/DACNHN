@@ -37,3 +37,4 @@
 <!--===============================================================================================-->
 <script src="${base}/js/main.js"></script>
 <script src="${base}/js/cart.js"></script>
+<script src="${base}/js/register.js"></script>
