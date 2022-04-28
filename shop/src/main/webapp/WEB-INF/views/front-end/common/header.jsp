@@ -5,9 +5,11 @@
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%
 String username = null;
+String userAvatarPath = null;
 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 if (principal instanceof UserDetails) {
 	username = ((User)principal).getUsername();
+	userAvatarPath = ((User)principal).getAvatar();
 }
 %>
 
@@ -20,13 +22,15 @@ if (principal instanceof UserDetails) {
 			<div class="content-topbar flex-sb-m h-full container">
 				<div class="left-top-bar">
 					Hotline: 0961010169
+					<a style="margin-left: 15px;">Ngõ 132/66, Nguyên Xá - Minh Khai - Q.Bắc Từ Liêm - Hà Nội</a>
 				</div>
 
 				<div class="right-top-bar flex-w h-full">
 					<%
 						if(username!=null){
 					%>
-						<a href="" class="flex-c-m trans-04 p-lr-25"> <%= username %> </a>
+						<a href="" class="flex-c-m trans-04 p-lr-25"> <%= username %> <img class="img-profile rounded-circle" style="margin-left: 3px;padding-left:2px;height:2rem;width:2rem"
+								src="${base}/upload/<%= userAvatarPath %>"></a>
 						<a href="${base}/logout" class="flex-c-m trans-04 p-lr-25"> Đăng xuất </a>
 					<% } else{ %>
 						<a href="${base}/login" class="flex-c-m trans-04 p-lr-25"> Đăng nhập </a>
@@ -42,7 +46,7 @@ if (principal instanceof UserDetails) {
 
 				<!-- Logo desktop -->
 				<a href="/" class="logo"> <img src="/images/icons/logo.png"
-					alt="IMG-LOGO">
+					alt="IMG-LOGO" style="max-height: 154%;">
 				</a>
 
 				<!-- Menu desktop -->

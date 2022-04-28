@@ -48,27 +48,32 @@
                                		<h3 class="h4 text-primary">${registerSuccess}</h3>
                                	</c:if>
                             </div>
-                            <form class="user" action="${base}/register" method="POST" enctype="multipart/form-data">
+                            <form class="user" action="${base}/register" method="POST" enctype="multipart/form-data" id="regForm">
                                 <div class="form-group">
                                     <input name="fullName" type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Họ và tên" required="required">
+                                        placeholder="Họ và tên" required="required" oninvalid="this.setCustomValidity('Nhập họ và tên!')"
+                                           oninput="this.setCustomValidity('')">
                                 </div>
                                 <div class="form-group">
                                     <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Địa chỉ email" required="required">
+                                        placeholder="Địa chỉ email" required="required" oninvalid="this.setCustomValidity('Nhập địa chỉ email!')"
+                                           oninput="this.setCustomValidity('')">
                                 </div>
                                 <div class="form-group">
                                     <input name="userName" type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Username" required="required">
+                                        placeholder="Username" required="required" oninvalid="this.setCustomValidity('Nhập tên người dùng!')"
+                                           oninput="this.setCustomValidity('')">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input name="password" type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Mật khẩu" required="required">
+                                            id="exampleInputPassword" placeholder="Mật khẩu" required="required" oninvalid="this.setCustomValidity('Nhập mật khẩu của bạn!')"
+                                               oninput="this.setCustomValidity('')">
                                     </div>
                                     <div class="col-sm-6">
                                         <input name="confirmPassword" type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Xác nhận mật khẩu" required="required">
+                                            id="exampleRepeatPassword" placeholder="Xác nhận mật khẩu" required="required" oninvalid="this.setCustomValidity('Nhập lại mật khẩu!')"
+                                               oninput="this.setCustomValidity('')">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -77,7 +82,7 @@
                                         <input name="userAvatar" type="file">
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng ký">
+                                <input type="submit" id="submit" class="btn btn-primary btn-user btn-block" value="Đăng ký">
                                 <!-- <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -110,6 +115,40 @@
 
     <!-- Custom scripts for all pages-->
     <script src="${base}/js/sb-admin-2.min.js"></script>
+
+    <!-- main js -->
+    <jsp:include page="/WEB-INF/views/front-end/common/js.jsp"></jsp:include>
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#submit").click(function () {
+                successRegitry();
+
+            });
+
+        });
+        function successRegitry() {
+            $.ajax({
+                url: "${base}/register",
+                data: $('#regForm').serialize(),
+                type: "POST",
+                success: function(data) {
+                    swal("Thành công", "Đăng ký thành công","success");
+                    /*setTimeout(function() {
+                        swal({
+                            title: "Thành công!",
+                            text: "Đăng ký thành công!",
+                            type: "success"
+                        }, function() {
+                            window.location = "back-end/user/login";
+                        });
+                    }, 1000);*/
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){}
+            });
+        }
+    </script>--%>
+
 
 </body>
 

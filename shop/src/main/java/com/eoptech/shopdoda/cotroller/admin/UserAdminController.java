@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -105,6 +106,15 @@ public class UserAdminController {
 		String avatarPath = "user/avatar/" + userAvatar.getOriginalFilename();
 		user.setAvatar(avatarPath);
 		userAvatar.transferTo(new File(PathConstant.ROOT_UPLOAD_PATH + avatarPath));
+		/*if(!Objects.isNull(userAvatar)) {
+			String avatarPath = "user/avatar/" + userAvatar.getOriginalFilename();
+			user.setAvatar(avatarPath);
+			userAvatar.transferTo(new File(PathConstant.ROOT_UPLOAD_PATH + avatarPath));
+		} else {
+			String avatarUrl = "user/avatar/download.png";
+			user.setAvatar(avatarUrl);
+			userAvatar.transferTo(new File(PathConstant.ROOT_UPLOAD_PATH + avatarUrl));
+		}*/
 
 		// Role
 		Role role = roleService.getRoleByName("GUEST");
