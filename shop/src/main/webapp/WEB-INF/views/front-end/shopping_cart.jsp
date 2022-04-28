@@ -156,21 +156,40 @@ if (principal instanceof UserDetails) {
 										String email = ((User)principal).getEmail();
 									%>
 									<div class="bor8 bg0 m-b-12">
-										
+										<%if (fullName != null) { %>
 										<input class="cl8 plh3 size-111 p-lr-15" type="text"
-											name="customerName" placeholder="<%= fullName %>" readonly>
+											   name="customerName" placeholder="<%= fullName %>" >
+										<%} else { %>
+										<input class="cl8 plh3 size-111 p-lr-15" type="text"
+											name="customerName" placeholder="Nhập tên đầy đủ..." >
+										<%}%>
 									</div>
 									<div class="bor8 bg0 m-b-12">
+										<%if (address != null) { %>
 										<input class="cl8 plh3 size-111 p-lr-15" type="text"
-											name="customerAddress" placeholder="<%= address%>" readonly>
+											   name="customerAddress" placeholder="<%= address%>" >
+										<%} else { %>
+										<input class="cl8 plh3 size-111 p-lr-15" type="text"
+											   name="customerAddress" placeholder="Nhập địa chỉ..." >
+										<%}%>
 									</div>
 									<div class="bor8 bg0 m-b-12">
+										<%if (phone != null) { %>
 										<input class="cl8 plh3 size-111 p-lr-15" type="text"
-											name="customerPhone" placeholder="<%= phone %>" readonly>
+											   name="customerPhone" placeholder="<%= phone %>" >
+										<%} else { %>
+										<input class="cl8 plh3 size-111 p-lr-15" type="text"
+											   name="customerPhone" placeholder="Nhập số điện thoại..." >
+										<%}%>
 									</div>
 									<div class="bor8 bg0 m-b-12">
+										<%if (email != null) { %>
 										<input class="cl8 plh3 size-111 p-lr-15" type="email"
-											name="customerEmail" placeholder="<%= email %>" readonly>
+											   name="customerEmail" placeholder="<%= email %>" >
+										<%} else { %>
+										<input class="cl8 plh3 size-111 p-lr-15" type="text"
+											   name="customerEmail" placeholder="Nhập email..." >
+										<%}%>
 									</div>
 									<%} %>
 

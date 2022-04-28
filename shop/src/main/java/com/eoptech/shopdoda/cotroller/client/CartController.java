@@ -3,6 +3,7 @@ package com.eoptech.shopdoda.cotroller.client;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,8 +108,16 @@ public class CartController extends BaseController {
 			User u = (User) principal;
 			userId = u.getId();
 			customerName = u.getFullName();
-			customerAddress = u.getAddress();
-			customerPhone = u.getPhone();
+			if(Objects.isNull(u.getAddress())) {
+				customerAddress = request.getParameter("customerAddress");
+			} else {
+				customerAddress = u.getAddress();
+			}
+			if(Objects.isNull(u.getPhone())) {
+				customerPhone = request.getParameter("customerPhone");
+			} else {
+				customerPhone = u.getPhone();
+			}
 			customerEmail = u.getEmail();
 		} else {
 			customerName = request.getParameter("customerName");

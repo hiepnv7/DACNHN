@@ -112,6 +112,7 @@ public class BlogController {
 		comment.setBlog(b);
 		comment.setComment(commentDto.getMessage());
 		comment.setStatus(false); // chờ admin duyệt
+		comment.setIsDeleted(false);
 		comment.setCreatedDate(new Date());
 		comment.setUpdatedDate(comment.getCreatedDate());
 		comment.setStatus(false);

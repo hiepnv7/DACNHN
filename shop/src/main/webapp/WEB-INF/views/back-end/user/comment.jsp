@@ -28,6 +28,8 @@
 <!-- Custom styles for this page -->
 <link href="${base}/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 </head>
 
@@ -66,7 +68,7 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" width="100%"
+								<table class="table table-bordered" width="100%" id="tb"
 									cellspacing="0">
 									<thead>
 										<tr>
@@ -86,25 +88,25 @@
 									</tfoot>
 									<tbody>
 										<c:forEach items="${comments}" var="comment">
-											<tr>
+											<tr id="hang_${comment.id}">
 												<td>${comment.blog.title}</td>
 												<td>${comment.user.fullName}</td>
 												<td>${comment.comment}</td>
 												<td class="w-25">
 												<c:if test="${comment.status == false }">
 													<button id="unapprovedReview_${comment.id}" onclick="approveComment(${comment.id})"
-														class="btn btn-secondary a-btn-slide-text">Appr
+														class="btn btn-secondary a-btn-slide-text">UnAppr
 															<i class="fas fa-window-close"></i>
 													</button> 
 												</c:if>
 												<c:if test="${comment.status == true }">
-													<button
+													<button id="approvedReview_${comment.id}" onclick="UnapproveComment(${comment.id})"
 														class="btn btn-success a-btn-slide-text">Appr
 															<i class="fas fa-check-square"></i>
 													</button> 
 												</c:if>
 												
-												<a href="#" class="btn btn-danger a-btn-slide-text"> <strong>Xóa</strong>
+												<a class="btn btn-danger a-btn-slide-text" onclick="deleteComment(${comment.id})"> <strong>Xóa</strong>
 														<i class="fas fa-trash-alt"></i>
 												</a></td>
 											</tr>
@@ -157,6 +159,7 @@
 	
 	<script>
 		function approveComment(commentId){
+			console.log("approve");
 			// javascript object.
 			var data = {};
 			data["id"] = commentId;
@@ -171,10 +174,54 @@
 					$(unapprovedReviewVar).removeClass("btn-secondary");
 					$(unapprovedReviewVar).addClass("btn-success");
 					$(unapprovedReviewVar).html('Appr<i class="fas fa-check-square"></i>');
+					$("#tb").load(location.href + " #tb");
 				},
 				error: function(jqXhr, textStatus, errorMessage) { // error callback 
 				}
 			});
+		}
+	</script>
+
+	<script>
+		function UnapproveComment(commentId){
+			console.log("unapprove");
+			// javascript object.
+			var data = {};
+			data["id"] = commentId;
+			var approvedReviewVar = "#approvedReview_" + commentId;
+			$.ajax({
+				url: "/admin/comments/un-approve",
+				type: "post",
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				dataType: "json",
+				success: function(jsonResult) {
+					$(approvedReviewVar).removeClass("btn-success");
+					$(approvedReviewVar).addClass("btn-secondary");
+					$(approvedReviewVar).html('UnAppr<i class="fas fa-window-close"></i>');
+					$("#tb").load(location.href + " #tb");
+				},
+				error: function(jqXhr, textStatus, errorMessage) { // error callback
+				}
+			});
+		}
+	</script>
+	<script>
+		function deleteComment(id) {
+
+			$.ajax({
+				url:"/admin/comments/delete/"+id,
+				type: "post",
+				contentType:"application/json",
+				data: null,
+				dataType: "json",
+				success: function (jsonResult) {
+					swal("Thành công", "Xóa comment thành công!", "success");
+					$("#hang_"+id).remove();
+					// location.rel();
+				}, error: function(jqXhr, textStatus, errorMessage) { // error callback
+				}
+			})
 		}
 	</script>
 </body>

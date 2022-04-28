@@ -46,7 +46,7 @@ if (principal instanceof UserDetails) {
 
 				<!-- Logo desktop -->
 				<a href="/" class="logo"> <img src="/images/icons/logo.png"
-					alt="IMG-LOGO" style="max-height: 154%;">
+					alt="IMG-LOGO" style="max-height: 140%;">
 				</a>
 
 				<!-- Menu desktop -->

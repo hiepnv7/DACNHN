@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eoptech.shopdoda.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -51,5 +52,25 @@ public class CommentAdminController {
 		commentRepo.save(comment);
 
 		return ResponseEntity.ok(new AjaxResponse(200, "Duyệt comment thành công!"));
+	}
+	// Unapprove
+	@RequestMapping(value = { "/admin/comments/un-approve" }, method = RequestMethod.POST)
+	public ResponseEntity<AjaxResponse> UnapproveComment(final ModelMap model, final HttpServletRequest request,
+																										 final HttpServletResponse response, @RequestBody ApprovedObj approvedObj) {
+		BlogComment comment = commentRepo.findById(approvedObj.getId()).get();
+		comment.setStatus(Boolean.FALSE);
+		commentRepo.save(comment);
+
+		return ResponseEntity.ok(new AjaxResponse(200, "Hủy duyệt comment thành công!"));
+	}
+	// Delete comments
+	@RequestMapping(value = { "/admin/comments/delete/{id}" }, method = RequestMethod.POST)
+	public ResponseEntity<AjaxResponse> deleteComment(final ModelMap model, final HttpServletRequest request,
+															final HttpServletResponse response, @PathVariable("id") int commentId) throws Exception {
+		BlogComment commentDeleted = commentRepo.findById(commentId).get();
+		commentDeleted.setIsDeleted(Boolean.TRUE);
+		commentRepo.save(commentDeleted);
+
+		return ResponseEntity.ok(new AjaxResponse(200, "Xóa comment thành công!"));
 	}
 }
