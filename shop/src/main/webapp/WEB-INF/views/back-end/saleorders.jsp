@@ -132,11 +132,11 @@
 												<td style="width: 25%;"> <a href="${base}/admin/saleorders/detail/${saleorder.id}"
 													class="btn btn-primary a-btn-slide-text"> <strong>Xem</strong>
 														<i class="fas fa-eye"></i>
-												</a> <a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal"> <strong>Xóa</strong>
+												</a> <a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal_${saleorder.id}"> <strong>Xóa</strong>
 														<i class="fas fa-trash-alt"></i>
 												</a></td>
 											</tr>
-											<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+											<div class="modal fade" id="deleteModal_${saleorder.id}" tabindex="-1" role="dialog"
 												aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">

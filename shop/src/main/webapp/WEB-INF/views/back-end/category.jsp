@@ -92,13 +92,13 @@
 													class="btn btn-secondary a-btn-slide-text"> <strong>Sửa</strong>
 														<i class="fas fa-edit"></i>
 												</a> 
-												<a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal"> 
+												<a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal_${category.id}">
 													<strong>Xóa</strong>
 													<i class="fas fa-trash-alt"></i>
 												</a>
 												</td>
 											</tr>
-											<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+											<div class="modal fade" id="deleteModal_${category.id}" tabindex="-1" role="dialog"
 												aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
