@@ -118,12 +118,12 @@
 															<strong>Đánh giá</strong> <i class="fas fa-comment"></i>
 													</a> 
 													<a href="#" data-toggle="modal"
-														class="btn btn-danger a-btn-slide-text" data-target="#deleteModal">
+														class="btn btn-danger a-btn-slide-text" data-target="#deleteModal_${product.id}">
 															<strong>Xóa</strong> <i class="fas fa-trash-alt"></i>
 													</a>
 													</td>
 												</tr>
-												<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+												<div class="modal fade" id="deleteModal_${product.id}" tabindex="-1" role="dialog"
 													aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">

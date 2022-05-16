@@ -86,13 +86,13 @@
 												<!-- <a href="#" class="btn btn-primary a-btn-slide-text"> <strong>View</strong>
 														<i class="fas fa-eye"></i>
 												</a>  -->
-												<a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal"> 
+												<a href="#" class="btn btn-danger a-btn-slide-text" data-toggle="modal" data-target="#deleteModal_${contact.id}">
 													<strong>Xóa</strong>
 													<i class="fas fa-trash-alt"></i>
 												</a>
 												</td>
 											</tr>
-											<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+											<div class="modal fade" id="deleteModal_${contact.id}" tabindex="-1" role="dialog"
 												aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
