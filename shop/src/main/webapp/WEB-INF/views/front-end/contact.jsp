@@ -187,10 +187,10 @@
 				alert("Email không được để trống!")
 				return;
 			}
-			if(validateEmail(email)){
+			/*if(validateEmail(email)){
 				alert("Email không đúng định dạng!")
 				return;
-			}
+			}*/
 			if($("#fName").val() == ""){
 				alert("Họ tên không được để trống!")
 				return;

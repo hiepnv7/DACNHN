@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eoptech.shopdoda.repositories.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class ContactController {
 	
 	@Autowired
 	private ShopRepo shopRepo;
+
+	@Autowired
+	private ContactRepo contactRepo;
 
 	@RequestMapping(value = { "/contact" }, method = RequestMethod.GET)
 	public String details(final ModelMap model, final HttpServletRequest request, final HttpServletResponse response)
@@ -87,7 +91,7 @@ public class ContactController {
 		contact.setCreatedDate(new Date());
 		contact.setUpdatedDate(contact.getCreatedDate());
 
-//		contactRepo.save(contact);
+		contactRepo.save(contact);
 
 		return ResponseEntity.ok(new AjaxResponse(200, "Thành công"));
 	}
